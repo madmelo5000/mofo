@@ -1,10 +1,7 @@
 <html>
 	<head>
 		<style>
-			body {
-				margin:0px;
-				padding:0px;
-			}
+			body {margin:0px; padding:0px;}
 			section {display:table;overflow:hidden;margin:0px auto;}
 			*:first-child+html section {position:relative;}/*ie7*/
 			* html section{position:relative;}/*ie6*/
@@ -19,6 +16,12 @@
 		</style>
 	</head>
 	<body>
+		<nav>
+			<a href="#one">The 1st button</a> |
+			<a href="#two">The 2nd button</a> |
+			<a href="#three">The 3rd button</a> |
+		</nav>
+		<a id="one"></a>
 		<section class="boom">
 			<div class="content_container">
 		        <div class="content">
@@ -26,6 +29,7 @@
 		        </div>
 		   	</div>
 		</section>
+		<a id="two"></a>
 		<section class="boom">
 			<div class="content_container">
 	           	<div class="content">
@@ -33,6 +37,7 @@
 	           	</div>
 		   	</div>
 		</section>
+		<a id="three"></a>
 		<section class="boom">
 			<div class="content_container">
 	           	<div class="content">
@@ -41,4 +46,20 @@
 		   	</div>
 		</section>
 	</body>
+	<script>
+		$(function() {
+		  $('a[href*=#]:not([href=#])').click(function() {
+		    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		      var target = $(this.hash);
+		      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		      if (target.length) {
+		        $('html,body').animate({
+		          scrollTop: target.offset().top
+		        }, 1000);
+		        return false;
+		      }
+		    }
+		  });
+		});
+	</script>
 </html>
